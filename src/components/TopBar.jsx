@@ -85,7 +85,7 @@ function TopBar() {
 
           <div className="topbar-actions">
             <div className="topbar-time">
-              <div>
+              <div className="time-display">
                 {new Date().toLocaleTimeString([], {
                   hour: "2-digit",
                   minute: "2-digit",
@@ -94,7 +94,7 @@ function TopBar() {
               <small>(GMT+1)</small>
             </div>
 
-            <button onClick={() => scrollToSection("contact")} className="talk-btn border-0 bg-transparent">
+            <button onClick={() => scrollToSection("contact")} className="talk-btn">
               <span className="talk-inner">
                 <span className="talk-text top">LET'S TALK</span>
                 <span className="talk-text bottom">LET'S TALK</span>
