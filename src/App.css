@@ -662,9 +662,9 @@ video {
 
 .sh-grid h2 {
   margin: 0;
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-size: clamp(1.5rem, 3.5vw, 3rem);
   line-height: 1.04;
-  letter-spacing: -.04em;
+  width: 930px;
 }
 
 /* ═══ Hero ═════════════════════════════════════════════════ */
@@ -674,6 +674,52 @@ video {
   min-height: 100vh;
   padding: 22px 0 34px;
   background: #060606;
+}
+
+.section-1 {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-2 {
+  position: relative;
+  z-index: 2; 
+  background-color:   #0c0c0c; 
+  min-height: 100vh;
+  width: 100%;
+  padding: 100px 0% 200px 0%; 
+  margin-top: 0;
+}
+
+.scroll-container {
+  position: relative;
+}
+
+.about-trigger {
+  height: 200vh; 
+  position: relative;
+}
+
+.h-100vh {
+  height: 100vh;
+  width: 100%;
+}
+
+.reveal-text {
+  color: rgba(255, 255, 255, 0.2);
+  max-width: 100%;
+}
+
+.reveal-word {
+  color: rgba(255, 255, 255, 0.2);
+  display: inline-block;
 }
 
 /* ─── 2-col stage grid ─── */

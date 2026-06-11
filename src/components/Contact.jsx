@@ -1,6 +1,6 @@
 export default function Contact() {
   return (
-    <footer className="site-wrap" id="contact">
+    <section className="site-wrap" id="contact">
       <div className="card-dark rounded p-4 p-md-5 mb-4">
         <span className="section-label mb-3">(Contact me)</span>
         <h2 className="display-5 fw-bold lh-sm mb-3" style={{letterSpacing:'-.05em'}}>
@@ -18,6 +18,6 @@ export default function Contact() {
           <p className="mb-0 t-muted">Portfolio concept — premium editorial aesthetic.</p>
         </div>
       </div>
-    </footer>
+    </section>
   );
 }

@@ -10,42 +10,14 @@ function TopBar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
     };
-
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
-
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-
-    if (element) {
-      setIsClickScrolling(true);
-
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-
-      setTimeout(() => {
-        setIsClickScrolling(false);
-      }, 700);
-    }
-
-    setMenuOpen(false);
-  };
 
   useEffect(() => {
     const sections = ["home", "about", "projects", "contact"];
@@ -60,7 +32,10 @@ function TopBar() {
           }
         });
       },
-      { threshold: 0.6 }
+      {
+        rootMargin: "-20% 0px -60% 0px",
+        threshold: 0
+      }
     );
 
     sections.forEach((id) => {
@@ -70,6 +45,31 @@ function TopBar() {
 
     return () => observer.disconnect();
   }, [isClickScrolling]);
+  const scrollToSection = (id) => {
+    setMenuOpen(false);
+    setIsClickScrolling(true);
+    setActiveSection(id);
+
+    if (id === "home") {
+      // Forza il browser a scrollare fino a coordinate 0,0 (l'inizio assoluto della pagina)
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    } else {
+      // Per tutte le altre sezioni usa il metodo standard
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }
+    setTimeout(() => {
+      setIsClickScrolling(false);
+    }, 1000);
+  };
 
   return (
     <header className={`topbar ${scrolled ? "topbar-scrolled" : ""}`}>
@@ -85,19 +85,21 @@ function TopBar() {
 
           <div className="topbar-actions">
             <div className="topbar-time">
-              <div>{new Date().toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}</div>
+              <div>
+                {new Date().toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </div>
               <small>(GMT+1)</small>
             </div>
 
-            <a href="#contact" className="talk-btn">
+            <button onClick={() => scrollToSection("contact")} className="talk-btn border-0 bg-transparent">
               <span className="talk-inner">
                 <span className="talk-text top">LET'S TALK</span>
                 <span className="talk-text bottom">LET'S TALK</span>
               </span>
-            </a>
+            </button>
 
             <button
               className={`menu-btn ${menuOpen ? "active" : ""}`}
@@ -123,53 +125,16 @@ function TopBar() {
               </div>
 
               <nav className="menu-nav">
-                <div className="nav-item-wrapper">
-                  <button
-                    onClick={() => {
-                      scrollToSection("home");
-                      setActiveSection("home");
-                    }}
-                    className={`nav-link ${activeSection === "home" ? "active" : ""}`}
-                  >
-                    HOME {activeSection === "home" && <span className="active-marker" />}
-                  </button>
-                </div>
-
-                <div className="nav-item-wrapper">
-                  <button
-                    onClick={() => {
-                      scrollToSection("about");
-                      setActiveSection("about");
-                    }}
-                    className={`nav-link ${activeSection === "about" ? "active" : ""}`}
-                  >
-                    ABOUT {activeSection === "about" && <span className="active-marker" />}
-                  </button>
-                </div>
-
-                <div className="nav-item-wrapper">
-                  <button
-                    onClick={() => {
-                      scrollToSection("projects");
-                      setActiveSection("projects");
-                    }}
-                    className={`nav-link ${activeSection === "projects" ? "active" : ""}`}
-                  >
-                    PROJECTS {activeSection === "projects" && <span className="active-marker" />}
-                  </button>
-                </div>
-
-                <div className="nav-item-wrapper">
-                  <button
-                    onClick={() => {
-                      scrollToSection("contact");
-                      setActiveSection("contact");
-                    }}
-                    className={`nav-link ${activeSection === "contact" ? "active" : ""}`}
-                  >
-                    CONTACT {activeSection === "contact" && <span className="active-marker" />}
-                  </button>
-                </div>
+                {["home", "about", "projects", "contact"].map((id) => (
+                  <div className="nav-item-wrapper" key={id}>
+                    <button
+                      onClick={() => scrollToSection(id)}
+                      className={`nav-link text-uppercase ${activeSection === id ? "active" : ""}`}
+                    >
+                      {id} {activeSection === id && <span className="active-marker" />}
+                    </button>
+                  </div>
+                ))}
               </nav>
 
               <div className="menu-footer">

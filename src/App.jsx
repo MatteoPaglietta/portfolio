@@ -17,11 +17,13 @@ function App() {
   return (
     <div>
       <TopBar />
-      <main>
+      <main className="scroll-container">
         <Hero />
-        <AboutStrip />
-        <Projects projects={featuredProjects} />
-        <Contact />
+        <div className="section-2 d-flex flex-column gap-5">
+          <AboutStrip />
+          <Projects projects={featuredProjects} />
+          <Contact />
+        </div>
       </main>
     </div>
   );

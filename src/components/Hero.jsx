@@ -25,7 +25,7 @@ export default function Hero() {
   ];
 
   return (
-    <section className="hero site-wrap" id="home">
+    <section className="section-1 hero site-wrap" id="home">
       <div className="hero-stage">
         <div className="hs-copy">
           <h1>
