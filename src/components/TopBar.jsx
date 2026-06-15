@@ -14,10 +14,31 @@ function TopBar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [menuOpen]);
+useEffect(() => {
+  const html = document.documentElement;
+  const body = document.body;
+  if (menuOpen) {
+    body.style.overflow = "hidden";
+    html.style.overflow = "hidden";
+    body.style.touchAction = "none"; 
+    if (window.lenis) {
+      window.lenis.stop();
+    }
+  } else {
+    body.style.overflow = "";
+    html.style.overflow = "";
+    body.style.touchAction = "";
+    if (window.lenis) {
+      window.lenis.start();
+    }
+  }
+  return () => {
+    body.style.overflow = "";
+    html.style.overflow = "";
+    body.style.touchAction = "";
+    if (window.lenis) window.lenis.start();
+  };
+}, [menuOpen]);
 
   useEffect(() => {
     const sections = ["home", "about", "projects", "contact"];
@@ -45,19 +66,18 @@ function TopBar() {
 
     return () => observer.disconnect();
   }, [isClickScrolling]);
+  
   const scrollToSection = (id) => {
     setMenuOpen(false);
     setIsClickScrolling(true);
     setActiveSection(id);
 
     if (id === "home") {
-      // Forza il browser a scrollare fino a coordinate 0,0 (l'inizio assoluto della pagina)
       window.scrollTo({
         top: 0,
         behavior: "smooth"
       });
     } else {
-      // Per tutte le altre sezioni usa il metodo standard
       const element = document.getElementById(id);
       if (element) {
         element.scrollIntoView({
@@ -112,7 +132,7 @@ function TopBar() {
 
           <div className={`fullscreen-menu ${menuOpen ? "open" : ""}`}>
             <div className="menu-backdrop" onClick={() => setMenuOpen(false)} />
-            <div className="menu-panel">
+            <div className="menu-panel" data-lenis-prevent>
               <div className="menu-header">
                 <div className="menu-title">
                   <span className="orange-dot-square"></span>
@@ -144,7 +164,16 @@ function TopBar() {
                     matteo.paglietta.mp@gmail.com
                   </a>
                 </div>
-
+                <div className="footer-section">
+                  <span className="footer-label">(CV)</span>
+                  <a
+                    href="/PAGLIETTA-MATTEO-CV.pdf"
+                    download="PAGLIETTA-MATTEO-CV.pdf"
+                    className="cv-link"
+                  >
+                    Download Cv <span className="arrow ms-3">&#10515;</span>
+                  </a>
+                </div>
                 <div className="footer-section">
                   <span className="footer-label">(SOCIALS)</span>
                   <div className="socials-grid">
@@ -159,7 +188,7 @@ function TopBar() {
           </div>
         </div>
       </div>
-    </header>
+    </header >
   );
 }
 

@@ -7,21 +7,34 @@ import {
   FaFigma,
   FaWordpress,
   FaPhp,
+  FaBootstrap,
+  FaGit,
+  FaGithub,
+  FaGitlab,
+  FaLaravel,
+  
 } from "react-icons/fa";
 
-import { SiMysql } from "react-icons/si";
+import { SiMysql, SiTailwindcss, SiGraphql } from "react-icons/si";
 
 export default function Hero() {
   const techStack = [
-    FaReact,
     FaHtml5,
     FaCss3Alt,
     FaJs,
-    FaAngular,
-    FaFigma,
-    SiMysql,
     FaPhp,
+    FaReact,
+    FaAngular,
+    FaLaravel,
     FaWordpress,
+    FaFigma,
+    FaBootstrap,
+    SiTailwindcss,
+    SiMysql,
+    FaGit,
+    FaGithub,
+    FaGitlab,
+    SiGraphql
   ];
 
   return (
@@ -29,27 +42,29 @@ export default function Hero() {
       <div className="hero-stage">
         <div className="hs-copy">
           <h1>
-            Beyond
+            <span>
+              Functional
+              <br />
+              Code.
+            </span>
             <br />
-            Visuals.
+            Thoughtful
             <br />
-            Built with
-            <br />
-            Vision.
+            Design.
           </h1>
         </div>
 
         <div className="hs-intro">
           <p>
             <span className="ps-5" />I build websites and improve
-            <br />web search {" "}
+            <br />organic web search {" "}
             <span>with intention,
-            <br />clarity and care.</span>
+              <br />clarity and care.</span>
           </p>
 
           <div
             className="d-grid gap-2 mt-4"
-            style={{ gridTemplateColumns: "94px 1fr" }}
+            style={{ gridTemplateColumns: "60px 1fr" }}
           >
             <span className="trusted-lbl align-self-center">
               Stack:

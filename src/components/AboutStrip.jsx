@@ -19,7 +19,7 @@ export default function AboutStrip() {
       scrollTrigger: {
         trigger: triggerRef.current,
         start: 'top top',
-        end: '+=100%',
+        end: '+=200%',
         pin: pinRef.current,
         scrub: true,
         markers: false,
@@ -27,7 +27,7 @@ export default function AboutStrip() {
     });
   }, { scope: triggerRef });
 
-  const testo = "We combines years of web design and branding expertise to craft meaningful, story-driven experiences";
+  const testo = "I develop interfaces that save users time. I consider myself a hybrid dev: I write clean code, but I think like a designer. My specialty is breaking down the barrier between design and code."
 
   return (
     <section ref={triggerRef} className="about-trigger w-100" id="about">
