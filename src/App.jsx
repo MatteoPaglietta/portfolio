@@ -16,12 +16,13 @@ const featuredProjects = [
 ];
 
 function App() {
-  
+
   useEffect(() => {
     const lenis = new Lenis({
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: 'vertical',
-      smoothWaveform: true,
+      smoothWheel: true,
+      smoothTouch: true,
     });
     window.lenis = lenis;
     function raf(time) {
@@ -31,19 +32,24 @@ function App() {
     requestAnimationFrame(raf);
     return () => {
       lenis.destroy();
-      window.lenis = null; 
+      window.lenis = null;
     };
   }, []);
 
   return (
     <div>
-      <TopBar />
+      <TopBar available={true} role="" company="" />
       <main className="scroll-container">
-        <Hero />
+        <Hero available={true} role="" company="" />
         <div className="section-2 d-flex flex-column">
           <AboutStrip />
           <Projects projects={featuredProjects} />
-          <BtnAllProjects title="More Projects" link="https://github.com/MatteoPaglietta?tab=repositories" arrow={true} className='justify-content-center px-15' style={{width: '50%'}}/>
+          <BtnAllProjects
+            title="More Projects"
+            link="https://github.com/MatteoPaglietta?tab=repositories"
+            arrow={true}
+            className="justify-content-center"
+          />
           <Contact />
         </div>
         <div className="section-3">

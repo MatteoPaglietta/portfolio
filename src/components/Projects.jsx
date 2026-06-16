@@ -6,16 +6,15 @@ export default function Projects({ projects }) {
   const imageRefs = useRef([]);
   const [flashIndex, setFlashIndex] = useState(null);
   const prevIndexRef = useRef(null);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     if (!projects || projects.length === 0) return;
-
     const stickyObserverOptions = {
       root: null,
       rootMargin: '-20% 0px -40% 0px',
       threshold: 0.2
     };
-
     const handleStickyIntersection = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -33,20 +32,28 @@ export default function Projects({ projects }) {
         }
       });
     };
-
     const stickyObserver = new IntersectionObserver(handleStickyIntersection, stickyObserverOptions);
-
     imageRefs.current.forEach((el) => {
       if (el) stickyObserver.observe(el);
     });
-
     const handleImageAnimations = () => {
       const altezzaFinestra = window.innerHeight;
+      const currentScrollY = window.scrollY;
+      const isScrollingDown = currentScrollY > lastScrollY.current;
+      lastScrollY.current = currentScrollY;
       imageRefs.current.forEach((el) => {
         if (!el) return;
         const rect = el.getBoundingClientRect();
-        const entrataDallAlto = rect.top < altezzaFinestra * 0.70;
-        const uscitaDalBasso = rect.bottom > altezzaFinestra * 1;
+        let entrataDallAlto = false;
+        let uscitaDalBasso = false;
+
+        if (isScrollingDown) {
+          entrataDallAlto = rect.top < altezzaFinestra * 0.90;
+          uscitaDalBasso = rect.bottom > altezzaFinestra * 0.75;
+        } else {
+          entrataDallAlto = rect.top < altezzaFinestra * 0.75;
+          uscitaDalBasso = rect.bottom > altezzaFinestra * 0.10;
+        }
 
         if (entrataDallAlto && uscitaDalBasso) {
           el.classList.add('in-view');
@@ -56,8 +63,10 @@ export default function Projects({ projects }) {
       });
     };
     handleImageAnimations();
+
     window.addEventListener('scroll', handleImageAnimations);
     window.addEventListener('resize', handleImageAnimations);
+
     return () => {
       stickyObserver.disconnect();
       window.removeEventListener('scroll', handleImageAnimations);

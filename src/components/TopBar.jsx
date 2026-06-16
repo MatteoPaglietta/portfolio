@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
-function TopBar() {
+function TopBar({ available, role, company }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [isClickScrolling, setIsClickScrolling] = useState(false);
+  const menuPanelRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,31 +15,35 @@ function TopBar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-useEffect(() => {
-  const html = document.documentElement;
-  const body = document.body;
-  if (menuOpen) {
-    body.style.overflow = "hidden";
-    html.style.overflow = "hidden";
-    body.style.touchAction = "none"; 
-    if (window.lenis) {
-      window.lenis.stop();
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+
+    if (menuOpen) {
+      body.style.overflow = "hidden";
+      html.style.overflow = "hidden";
+      body.style.touchAction = "none";
+      if (window.lenis) {
+        window.lenis.stop();
+      }
+      if (menuPanelRef.current) {
+        menuPanelRef.current.scrollTop = 0;
+      }
+    } else {
+      body.style.overflow = "";
+      html.style.overflow = "";
+      body.style.touchAction = "";
+      if (window.lenis) {
+        window.lenis.start();
+      }
     }
-  } else {
-    body.style.overflow = "";
-    html.style.overflow = "";
-    body.style.touchAction = "";
-    if (window.lenis) {
-      window.lenis.start();
-    }
-  }
-  return () => {
-    body.style.overflow = "";
-    html.style.overflow = "";
-    body.style.touchAction = "";
-    if (window.lenis) window.lenis.start();
-  };
-}, [menuOpen]);
+    return () => {
+      body.style.overflow = "";
+      html.style.overflow = "";
+      body.style.touchAction = "";
+      if (window.lenis) window.lenis.start();
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     const sections = ["home", "about", "projects", "contact"];
@@ -66,29 +71,51 @@ useEffect(() => {
 
     return () => observer.disconnect();
   }, [isClickScrolling]);
-  
+
   const scrollToSection = (id) => {
+    if (menuOpen && window.lenis) {
+      window.lenis.start();
+    }
     setMenuOpen(false);
     setIsClickScrolling(true);
     setActiveSection(id);
 
-    if (id === "home") {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    } else {
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
+    const scrollDuration = 2;
+
+    if (window.lenis) {
+      if (id === "home") {
+        window.lenis.scrollTo(0, {
+          duration: scrollDuration,
         });
+      } else {
+        const element = document.getElementById(id);
+        if (element) {
+          window.lenis.scrollTo(element, {
+            duration: scrollDuration,
+            offset: 0,
+          });
+        }
+      }
+    } else {
+      if (id === "home") {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      } else {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
       }
     }
+
     setTimeout(() => {
       setIsClickScrolling(false);
-    }, 1000);
+    }, scrollDuration * 1000);
   };
 
   return (
@@ -104,7 +131,12 @@ useEffect(() => {
           </div>
 
           <div className="topbar-actions">
-            <div className="topbar-time">
+            <div className="topbar-available pe-3 d-none d-lg-flex">
+              <span className={`${available ? "green-dot" : "red-dot"}`}></span>
+              {available ? "Open to work" : `Full-time as ${role} @${company}`}
+            </div>
+
+            <div className="topbar-time d-none d-lg-block">
               <div className="time-display">
                 {new Date().toLocaleTimeString([], {
                   hour: "2-digit",
@@ -132,7 +164,7 @@ useEffect(() => {
 
           <div className={`fullscreen-menu ${menuOpen ? "open" : ""}`}>
             <div className="menu-backdrop" onClick={() => setMenuOpen(false)} />
-            <div className="menu-panel" data-lenis-prevent>
+            <div className="menu-panel" data-lenis-prevent ref={menuPanelRef}>
               <div className="menu-header">
                 <div className="menu-title">
                   <span className="orange-dot-square"></span>
