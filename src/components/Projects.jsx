@@ -7,41 +7,63 @@ export default function Projects({ projects }) {
   const [flashIndex, setFlashIndex] = useState(null);
   const prevIndexRef = useRef(null);
 
-useEffect(() => {
-  const observerOptions = {
-    root: null,
-    rootMargin: '-20% 0px -40% 0px',
-    threshold: 0.2
-  };
+  useEffect(() => {
+    if (!projects || projects.length === 0) return;
 
-  const handleIntersection = (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const index = parseInt(entry.target.getAttribute('data-index'), 10);
-        
-        if (!isNaN(index)) {
-          if (prevIndexRef.current !== index) {
-            prevIndexRef.current = index;
-            setActiveIndex(index);
-            setFlashIndex(index);
-            setTimeout(() => {
-              setFlashIndex(null);
-            }, 1400);
+    const stickyObserverOptions = {
+      root: null,
+      rootMargin: '-20% 0px -40% 0px',
+      threshold: 0.2
+    };
+
+    const handleStickyIntersection = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = parseInt(entry.target.getAttribute('data-index'), 10);
+          if (!isNaN(index)) {
+            if (prevIndexRef.current !== index) {
+              prevIndexRef.current = index;
+              setActiveIndex(index);
+              setFlashIndex(index);
+              setTimeout(() => {
+                setFlashIndex(null);
+              }, 1400);
+            }
           }
         }
-      }
+      });
+    };
+
+    const stickyObserver = new IntersectionObserver(handleStickyIntersection, stickyObserverOptions);
+
+    imageRefs.current.forEach((el) => {
+      if (el) stickyObserver.observe(el);
     });
-  };
 
-  const observer = new IntersectionObserver(handleIntersection, observerOptions);
-  imageRefs.current.forEach((el) => {
-    if (el) observer.observe(el);
-  });
+    const handleImageAnimations = () => {
+      const altezzaFinestra = window.innerHeight;
+      imageRefs.current.forEach((el) => {
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const entrataDallAlto = rect.top < altezzaFinestra * 0.70;
+        const uscitaDalBasso = rect.bottom > altezzaFinestra * 1;
 
-  return () => {
-    observer.disconnect();
-  };
-}, [projects]);
+        if (entrataDallAlto && uscitaDalBasso) {
+          el.classList.add('in-view');
+        } else {
+          el.classList.remove('in-view');
+        }
+      });
+    };
+    handleImageAnimations();
+    window.addEventListener('scroll', handleImageAnimations);
+    window.addEventListener('resize', handleImageAnimations);
+    return () => {
+      stickyObserver.disconnect();
+      window.removeEventListener('scroll', handleImageAnimations);
+      window.removeEventListener('resize', handleImageAnimations);
+    };
+  }, [projects]);
 
   return (
     <section
@@ -57,7 +79,6 @@ useEffect(() => {
         <div className="container-fluid projects-content-body">
           <div className="row h-100 align-items-stretch">
             <div className="col-12 col-lg-5 project-left-viewport">
-
               <div className="num-viewport">
                 <div
                   className="numbers-track"
