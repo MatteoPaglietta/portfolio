@@ -1,7 +1,7 @@
 export default function Footer() {
     return (
         <div className="container">
-            <div className="row">
+            <div className="row align-items-center">
                 <div className="col-6">
                     <div className="footer-logo">
                         MATTEO

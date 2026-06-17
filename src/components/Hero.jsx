@@ -3,7 +3,7 @@ import {
   FaReact, FaHtml5, FaCss3Alt, FaJs, FaAngular, FaFigma,
   FaWordpress, FaPhp, FaBootstrap, FaGit, FaGithub, FaGitlab, FaLaravel,
 } from "react-icons/fa";
-import { SiMysql, SiTailwindcss, SiGraphql } from "react-icons/si";
+import { SiMysql, SiTailwindcss, SiGraphql, SiClaude } from "react-icons/si";
 
 export default function Hero({ available, role, company }) {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -11,7 +11,7 @@ export default function Hero({ available, role, company }) {
   const techStack = [
     FaHtml5, FaCss3Alt, FaJs, FaPhp, FaReact, FaAngular, FaLaravel,
     FaWordpress, FaFigma, FaBootstrap, SiTailwindcss, SiMysql, FaGit,
-    FaGithub, FaGitlab, SiGraphql
+    FaGithub, FaGitlab, SiGraphql, SiClaude, 
   ];
 
   useEffect(() => {
@@ -117,7 +117,7 @@ export default function Hero({ available, role, company }) {
           </p>
 
           <div
-            className="d-grid gap-2 mt-4"
+            className="d-grid gap-2 mt-4 stack-row"
             style={{ gridTemplateColumns: "60px 1fr" }}
           >
             <span className="trusted-lbl align-self-center">

@@ -48,7 +48,8 @@ function App() {
             title="More Projects"
             link="https://github.com/MatteoPaglietta?tab=repositories"
             arrow={true}
-            className="justify-content-center"
+            className="justify-content-center more-projects-footer"
+            classNameBtn="more-projects-btn"
           />
           <Contact />
         </div>

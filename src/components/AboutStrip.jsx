@@ -34,11 +34,11 @@ export default function AboutStrip() {
     <section ref={triggerRef} className="about-trigger w-100" id="about">
       <div ref={pinRef} className="sh-grid container d-flex justify-content-center align-items-center h-100vh">
         <div className="row justify-content-center w-100">
-          <div className="col-12 col-lg-9 d-flex flex-column flex-lg-row align-items-center align-items-lg-start position-relative">
+          <div className="col-12 col-xl-9 d-flex flex-column flex-xl-row align-items-center align-items-lg-start position-relative">
             <span className="section-label about-me-label">
               (About me)
             </span>
-            <div ref={textRef} className="reveal-text about-me-text">
+            <div ref={textRef} className="reveal-text about-me-text px-4 px-xl-0">
               <h1 className="m-0 d-inline">
                 {titolo.split(' ').map((word, index) => (
                   <span key={`title-${index}`} className="reveal-word">
