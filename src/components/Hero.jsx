@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import LazyImage from "./LazyImage";
 import {
   FaReact, FaHtml5, FaCss3Alt, FaJs, FaAngular, FaFigma,
   FaWordpress, FaPhp, FaBootstrap, FaGit, FaGithub, FaGitlab, FaLaravel,
@@ -101,10 +102,12 @@ export default function Hero({ available, role, company }) {
         </div>
 
         <div className="hero-center-image-wrapper">
-          <img
-            src="/img/contact.jpg"
+          <LazyImage
+            lazyImgWrap={true}
+            src="img/matteo/matteo.jpg"
             alt="Matteo Paglietta"
             className="hero-center-img"
+            eager
           />
         </div>
 
@@ -128,7 +131,7 @@ export default function Hero({ available, role, company }) {
               <div className="trusted-track">
                 {[...techStack, ...techStack].map((Icon, index) => (
                   <div className="trusted-brand" key={index}>
-                    <Icon />
+                    <Icon aria-hidden="true" focusable="false" />
                   </div>
                 ))}
               </div>

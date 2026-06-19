@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import LazyImage from './LazyImage';
 
 export default function Projects({ projects }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -57,8 +58,11 @@ export default function Projects({ projects }) {
       const currentScrollY = window.scrollY;
       const isScrollingDown = currentScrollY > lastScrollY.current;
       lastScrollY.current = currentScrollY;
-      imageRefs.current.forEach((el) => {
-        if (!el) return;
+
+      // Read all geometry first, then write classes in a separate pass
+      // to avoid layout thrashing (interleaved reads/writes force sync reflows).
+      const updates = imageRefs.current.map((el) => {
+        if (!el) return null;
         const rect = el.getBoundingClientRect();
         let entrataDallAlto = false;
         let uscitaDalBasso = false;
@@ -71,11 +75,12 @@ export default function Projects({ projects }) {
           uscitaDalBasso = rect.bottom > altezzaFinestra * 0.10;
         }
 
-        if (entrataDallAlto && uscitaDalBasso) {
-          el.classList.add('in-view');
-        } else {
-          el.classList.remove('in-view');
-        }
+        return { el, inView: entrataDallAlto && uscitaDalBasso };
+      });
+
+      updates.forEach((update) => {
+        if (!update) return;
+        update.el.classList.toggle('in-view', update.inView);
       });
     };
     handleImageAnimations();
@@ -126,8 +131,8 @@ export default function Projects({ projects }) {
                       <li key={`menu-${item.number}`} className="menu-item-wrapper">
                         <span className={`menu-dash ${isActive ? 'active' : ''}`}>—</span>
                         <a
-                          href={isActive ? (item.githubUrl || "#") : undefined}
-                          target={isActive ? "_blank" : undefined}
+                          href={item.githubUrl || "#"}
+                          target="_blank"
                           rel="noopener noreferrer"
                           className={`project-menu-item ${isActive ? 'active' : ''} ${isFlashing ? 'scroll-triggered' : ''}`}
                           onClick={(e) => !isActive && e.preventDefault()}
@@ -181,7 +186,7 @@ export default function Projects({ projects }) {
                     className="proj-visual-mockup"
                     style={leftContentHeight ? { height: leftContentHeight } : undefined}
                   >
-                    <img src={item.image} alt={item.title} className="proj-img-element" />
+                    <LazyImage lazyImgWrap={false} src={item.image} alt={`${item.title} website preview`} className="proj-img-element" />
                   </div>
                 </div>
               ))}
@@ -195,7 +200,7 @@ export default function Projects({ projects }) {
         {projects.map((item) => (
           <div key={`mobile-${item.number}`} className="mobile-project-item">
             <div className="mobile-proj-visual-mockup">
-              <img src={item.image} alt={item.title} className="mobile-proj-img-element" />
+              <LazyImage lazyImgWrap={false} src={item.image} alt={`${item.title} website preview`} className="mobile-proj-img-element" />
             </div>
             <a
               href={item.githubUrl || "#"}
@@ -231,7 +236,7 @@ export default function Projects({ projects }) {
               <p className="tablet-project-desc">{item.description}</p>
             </div>
             <div className="tablet-proj-visual-mockup">
-              <img src={item.image} alt={item.title} className="tablet-proj-img-element" />
+              <LazyImage lazyImgWrap={false} src={item.image} alt={`${item.title} website preview`} className="tablet-proj-img-element" />
             </div>
           </div>
         ))}

@@ -93,7 +93,7 @@ export default function Contact() {
               LET'S WORK<br />TOGETHER
             </h2>
           </div>
-          <div className="contact-center-bg" style={{ backgroundImage: "url('/img/contact.jpg')" }}></div>
+          <div className="contact-center-bg" style={{ backgroundImage: "url('/img/contact/contact.jpg')" }}></div>
           <div className="col-lg-5 offset-lg-1 z-1 mt-5 pt-5">
             <div className="hs-contact d-flex pb-md-4">
               <p>
@@ -125,24 +125,24 @@ export default function Contact() {
             <div>
               <span className="footer-label">(LINKS)</span>
               <ul className="list-unstyled lh-base m-0 link-list">
-                <a className="t-muted" onClick={() => scrollToSection("home")}>Home</a>
-                <a className="t-muted" onClick={() => scrollToSection("about")}>About</a>
-                <a className="t-muted" onClick={() => scrollToSection("projects")}>Projects</a>
-                <a className="t-muted" onClick={() => scrollToSection("contact")}>Contact</a>
+                <li><a href="#home" className="t-muted" onClick={(e) => { e.preventDefault(); scrollToSection("home"); }}>Home</a></li>
+                <li><a href="#about" className="t-muted" onClick={(e) => { e.preventDefault(); scrollToSection("about"); }}>About</a></li>
+                <li><a href="#projects" className="t-muted" onClick={(e) => { e.preventDefault(); scrollToSection("projects"); }}>Projects</a></li>
+                <li><a href="#contact" className="t-muted" onClick={(e) => { e.preventDefault(); scrollToSection("contact"); }}>Contact</a></li>
               </ul>
             </div>
             <div>
               <span className="footer-label">(CV)</span>
               <ul className="list-unstyled lh-base m-0 link-list">
-                <a href="/PAGLIETTA-MATTEO-CV.pdf" download="PAGLIETTA-MATTEO-CV.pdf" className="t-muted">CV <span className="arrow ms-3">&#10515;</span></a>
+                <li><a href="/PAGLIETTA-MATTEO-CV.pdf" download="PAGLIETTA-MATTEO-CV.pdf" className="t-muted">CV <span className="arrow ms-3">&#10515;</span></a></li>
               </ul>
             </div>
             <div>
               <span className="footer-label">(SOCIALS)</span>
               <ul className="list-unstyled lh-base m-0 d-flex flex-column link-list">
-                <a href="https://www.linkedin.com/in/matteo-paglietta" target="_blank" rel="noreferrer" className="t-muted">LinkedIn ↗</a>
-                <a href="https://www.instagram.com/_paglie_/" target="_blank" rel="noreferrer" className="t-muted">Instagram ↗</a>
-                <a href="https://www.github.com/matteopaglietta" target="_blank" rel="noreferrer" className="t-muted">GitHub ↗</a>
+                <li><a href="https://www.linkedin.com/in/matteo-paglietta" target="_blank" rel="noreferrer" className="t-muted">LinkedIn ↗</a></li>
+                <li><a href="https://www.instagram.com/_paglie_/" target="_blank" rel="noreferrer" className="t-muted">Instagram ↗</a></li>
+                <li><a href="https://www.github.com/matteopaglietta" target="_blank" rel="noreferrer" className="t-muted">GitHub ↗</a></li>
               </ul>
             </div>
           </div>
@@ -216,7 +216,7 @@ export default function Contact() {
                     href="https://www.iubenda.com/privacy-policy/88542204"
                     target="_blank"
                     rel="noreferrer"
-                    style={{ color: '#4fccc4', textDecoration: 'none' }}
+                    style={{ color: '#4fccc4', textDecoration: 'underline' }}
                   >
                     Privacy Policy
                   </a>{' '}
@@ -225,7 +225,7 @@ export default function Contact() {
                     href="https://www.iubenda.com/privacy-policy/88542204/cookie-policy"
                     target="_blank"
                     rel="noreferrer"
-                    style={{ color: '#4fccc4', textDecoration: 'none' }}
+                    style={{ color: '#4fccc4', textDecoration: 'underline' }}
                   >
                     Cookie Policy*
                   </a>

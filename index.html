@@ -4,13 +4,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Preload LCP image (hero portrait) so the browser discovers it before JS runs -->
+  <link rel="preload" as="image" href="/img/contact/contact.avif" type="image/avif" fetchpriority="high" />
+
+  <!-- Primary SEO -->
+  <title>Matteo Paglietta | Frontend & Web Developer</title>
+  <meta name="title" content="Matteo Paglietta | Frontend & Web Developer" />
+  <meta name="description" content="Matteo Paglietta, frontend & web developer building fast, accessible websites with React, Angular and WordPress." />
+  <meta name="keywords" content="Matteo Paglietta, frontend developer, web developer, React developer, Angular, WordPress, web design, portfolio, software developer Italy" />
+  <meta name="author" content="Matteo Paglietta" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.matteopaglietta.it/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.matteopaglietta.it/" />
+  <meta property="og:title" content="Matteo Paglietta | Frontend & Web Developer" />
+  <meta property="og:description" content="Frontend & web developer building fast, accessible websites with React, Angular and WordPress." />
+  <meta property="og:image" content="https://www.matteopaglietta.it/img/contact/contact.jpg" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Matteo Paglietta" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://www.matteopaglietta.it/" />
+  <meta name="twitter:title" content="Matteo Paglietta | Frontend & Web Developer" />
+  <meta name="twitter:description" content="Frontend & web developer building fast, accessible websites with React, Angular and WordPress." />
+  <meta name="twitter:image" content="https://www.matteopaglietta.it/img/contact/contact.jpg" />
+
+  <meta name="theme-color" content="#141414" />
+
+  <!-- Favicons -->
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="Matteo" />
   <link rel="manifest" href="/site.webmanifest" />
-  <title>Matteo Paglietta</title>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Matteo Paglietta",
+    "url": "https://www.matteopaglietta.it/",
+    "jobTitle": "Frontend & Web Developer",
+    "image": "https://www.matteopaglietta.it/img/contact/contact.jpg",
+    "sameAs": [
+      "https://www.linkedin.com/in/matteo-paglietta",
+      "https://www.github.com/matteopaglietta",
+      "https://www.instagram.com/_paglie_/"
+    ],
+    "knowsAbout": [
+      "React", "JavaScript", "HTML5", "CSS3", "PHP", "Laravel",
+      "Angular", "Figma", "WordPress", "Tailwind CSS", "Bootstrap",
+      "Performance Optimization", "SEO", "UI/UX Design", "MySQL",
+      "Responsive Design", "GraphQL", "REST APIs", "TypeScript",
+      "Git", "GitHub", "GitLab", "Agile Methodologies", "Claude Code"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Matteo Paglietta",
+    "url": "https://www.matteopaglietta.it/"
+  }
+  </script>
 </head>
 
 <body>

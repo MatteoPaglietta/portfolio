@@ -156,6 +156,8 @@ function TopBar({ available, role, company }) {
             <button
               className={`menu-btn ${menuOpen ? "active" : ""}`}
               onClick={() => setMenuOpen(!menuOpen)}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
             >
               <span />
               <span />
@@ -170,7 +172,7 @@ function TopBar({ available, role, company }) {
                   <span className="orange-dot-square"></span>
                   MENU
                 </div>
-                <button className="menu-btn-x" onClick={() => setMenuOpen(false)}>
+                <button className="menu-btn-x" onClick={() => setMenuOpen(false)} aria-label="Close menu">
                   <span />
                   <span />
                 </button>
