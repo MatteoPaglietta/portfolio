@@ -121,10 +121,10 @@ export default function Hero({ available, role, company }) {
 
           <div
             className="d-grid gap-2 mt-4 stack-row"
-            style={{ gridTemplateColumns: "60px 1fr" }}
+            style={{ gridTemplateColumns: "auto 1fr" }}
           >
             <span className="trusted-lbl align-self-center">
-              Stack:
+              Know-how:
             </span>
 
             <div className="trusted-carousel">

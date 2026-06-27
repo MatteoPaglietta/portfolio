@@ -86,14 +86,14 @@ export default function Contact() {
 
   return (
     <section className="container" id="contact">
-      <div className="container-fluid px-0" style={{ maxWidth: '1300px' }}>
+      <div className="container-fluid px-md-0" style={{ maxWidth: '1300px' }}>
         <div className="row align-items-center mb-md-5 contact-main-row">
           <div className="col-12 col-md-6 z-1">
             <h2 className="text-uppercase lh-1 mb-0 contact-big-title">
               LET'S WORK<br />TOGETHER
             </h2>
           </div>
-          <div className="contact-center-bg" style={{ backgroundImage: "url('/img/contact/contact.jpg')" }}></div>
+          <div className="contact-center-bg"></div>
           <div className="col-lg-5 offset-lg-1 z-1 mt-5 pt-5">
             <div className="hs-contact d-flex pb-md-4">
               <p>

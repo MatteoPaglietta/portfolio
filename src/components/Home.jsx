@@ -11,7 +11,7 @@ import Footer from './Footer';
 const featuredProjects = [
   { number: '01', title: 'Pepenero Cafè', category: 'Menu website · Web Site', description: 'An intuitive digital menu for modern bars, featuring seamless navigation, a sleek design, and your next order always just a tap away.', image: '/img/pepenero/pepenero.jpg', githubUrl: 'https://pepenerocafe-menu.netlify.app' },
   { number: '02', title: 'Armonie di Erica', category: 'Landing page · Web Site', description: 'A refined online presence for a beauty salon, tailored to highlight premium services, expertise, and results that captivate new clients.', image: '/img/armonie/armonie.jpg', githubUrl: 'https://github.com/MatteoPaglietta/armonie-di-erica-favaro' },
-  { number: '03', title: 'BeatsBlend', category: 'Music tool website · Web Site', description: 'A neomorphic music tool that analyzes BPM and key, discovers related tracks, and transforms every uploaded song into new opportunities for musical exploration.', image: '/img/beatsblend/beatsblend.jpg', githubUrl: 'https://beatsblend.netlify.app' },
+  { number: '03', title: 'BeatsBlend', category: 'Music tool website · Web Site', description: 'A neomorphic music tool that analyzes BPM and key, discovers related tracks, and transforms every uploaded song into new opportunities for musical exploration.', image: '/img/beatsblend/beatsblend.jpg', githubUrl: 'https://github.com/MatteoPaglietta/beatblend' },
 ];
 
 export default function Home() {

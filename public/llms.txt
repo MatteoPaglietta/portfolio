@@ -1,0 +1,16 @@
+# Matteo Paglietta
+
+> Frontend & Web Developer based in Italy, building fast, accessible, SEO-friendly websites with React, Angular and WordPress.
+
+Matteo Paglietta is a frontend and web developer focused on performance, accessibility and SEO. Open to freelance and full-time projects.
+
+## Pages
+
+- [Home](https://www.matteopaglietta.it/): Portfolio, skills and selected projects.
+- [Contact](https://www.matteopaglietta.it/#contact): Get in touch for project inquiries.
+
+## Projects
+
+- [Pepenero Cafè](https://pepenerocafe-menu.netlify.app): Digital menu website for a bar.
+- [Armonie di Erica](https://github.com/MatteoPaglietta/armonie-di-erica-favaro): Landing page for a beauty salon.
+- [BeatsBlend](https://beatsblend.netlify.app): Music tool that analyzes BPM and key to suggest compatible tracks.
