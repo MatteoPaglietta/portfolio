@@ -2,7 +2,7 @@
 
 Personal portfolio site for Matteo Paglietta, frontend & web developer. Built with React and Vite, optimized for performance, accessibility and SEO, with static prerendering for search engines.
 
-**Live:** [matteopaglietta.it](https://www.matteopaglietta.it/)
+**Live:** [matteopaglietta.it](https://matteopaglietta.it/)
 
 ## Stack
 

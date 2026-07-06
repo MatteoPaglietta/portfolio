@@ -37,9 +37,9 @@ export default function Home() {
 
   return (
     <div>
-      <TopBar available={true} role="" company="" />
+      <TopBar available={false} role="Software Developer" company="Bonetto Automation" />
       <main className="scroll-container">
-        <Hero available={true} role="" company="" />
+        <Hero available={false} role="Software Developer" company="Bonetto Automation" />
         <div className="section-2 d-flex flex-column">
           <AboutStrip />
           <Projects projects={featuredProjects} />

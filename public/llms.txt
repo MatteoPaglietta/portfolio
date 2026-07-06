@@ -6,8 +6,8 @@ Matteo Paglietta is a frontend and web developer focused on performance, accessi
 
 ## Pages
 
-- [Home](https://www.matteopaglietta.it/): Portfolio, skills and selected projects.
-- [Contact](https://www.matteopaglietta.it/#contact): Get in touch for project inquiries.
+- [Home](https://matteopaglietta.it/): Portfolio, skills and selected projects.
+- [Contact](https://matteopaglietta.it/#contact): Get in touch for project inquiries.
 
 ## Projects
 

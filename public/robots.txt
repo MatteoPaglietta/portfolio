@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.matteopaglietta.it/sitemap.xml
+Sitemap: https://matteopaglietta.it/sitemap.xml
